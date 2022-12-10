@@ -1,0 +1,95 @@
+<nz-input-group nzSearch [nzAddOnAfter]="suffixIconButton" style="width: 40%">
+  <input [ngModel]="value" (ngModelChange)="onChange($event)" type="text" nz-input placeholder="Ingrese el nombre de la persona a buscar" />
+</nz-input-group>
+<ng-template #suffixIconButton>
+  <button nz-button nzType="primary" (click)="searchProduct(value)" nzSearch><span nz-icon nzType="search"></span></button>
+</ng-template>
+
+<br>
+
+<nz-table #basicTable [nzData]="listOfData">
+  <thead>
+  <tr>
+    <th>Producto</th>
+    <th>Código</th>
+    <th>Precio</th>
+    <th>Disponibles</th>
+    <th>Acción</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of basicTable.data">
+    <td>{{ data.name }}</td>
+    <td>{{ data.codigo }}</td>
+    <td>{{ data.precio }}</td>
+    <td>{{ data.cantidad }}</td>
+    <td>
+      <!--<button nz-button (click)="showModalX(data, false)" nzType="dashed">JSON</button>-->
+      <button nz-button (click)="showModalX(data, true)" nzType="dashed">XML</button>
+      <i class="fas fa-edit options-cs edit-data" (click)="editData(data)"></i>
+      <i class="fas fa-trash-alt options-cs delete-data" (click)="deleteProduct(data.id)"></i>
+    </td>
+  </tr>
+  </tbody>
+</nz-table>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="Producto" [nzWidth]="'60%'" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" nzOkText="Guardar" nzCancelText="Cancelar">
+  <ng-container *nzModalContent>
+
+    <div *ngIf="encontrado">
+      <form nz-form [formGroup]="validateForm">
+
+        <div nz-row>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Ingresa el nombre del producto!">
+                <nz-input-group nzPrefixIcon="tablet">
+                  <input formControlName="name" nz-input placeholder="Producto" [ngModel]="resultSearch.name" />
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Ingresa el código!">
+                <nz-input-group nzPrefixIcon="code">
+                  <input formControlName="codigo" nz-input placeholder="Código de producto" [ngModel]="resultSearch.codigo"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+
+        <div nz-row>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Ingresa el precio!">
+                <nz-input-group nzPrefixIcon="credit-card">
+                  <input formControlName="precio" nz-input placeholder="Precio Unitario" type="number" [ngModel]="resultSearch.precio"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-form-item>
+              <nz-form-control nzErrorTip="Ingresa la cantidad disponible!">
+                <nz-input-group nzPrefixIcon="number">
+                  <input formControlName="cantidad" nz-input placeholder="Disponibles" type="number" [ngModel]="resultSearch.cantidad"/>
+                </nz-input-group>
+              </nz-form-control>
+            </nz-form-item>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="!encontrado">
+      <h1>No se encontró el producto!!</h1>
+    </div>
+
+  </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="isVisibleX" nzTitle="Informacion en XML" (nzOnCancel)="handleCancelX()" (nzOnOk)="handleOkX()">
+
+    <p *nzModalContent>{{outputXml}}</p>
+</nz-modal>

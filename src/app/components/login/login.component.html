@@ -1,0 +1,32 @@
+<div class="body-container" style="background-image: url('/assets/backgroud.jpg'); height: 100%">
+  <div class="container">
+    <div class="wrapper">
+      <div class="title"><span>Tony Uchiha</span></div>
+      <form [formGroup]="formLogin" >
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Ingrese su correo electrónico!">
+            <div class="row">
+              <i class="person_outline"></i>
+              <input type="text" formControlName="email" placeholder="Email" required>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control nzErrorTip="Ingrese su contraseña!">
+            <div class="row">
+              <i class="whatshot"></i>
+              <input type="password" formControlName="password" placeholder="Password" required>
+            </div>
+          </nz-form-control>
+        </nz-form-item>
+
+        <div class="pass"><a href="#">¿Olvidó su contraseña?</a></div>
+        <div class="row button">
+          <input type="submit" value="Acceder" (click)="login()">
+        </div>
+        <!--<div class="signup-link">Not a member? <a href="#">Signup now</a></div>-->
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<form nz-form [formGroup]="validateForm">
+
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Ingresa el nombre del producto!">
+          <nz-input-group nzPrefixIcon="tablet">
+            <input formControlName="name" nz-input placeholder="Producto" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Ingresa el código!">
+          <nz-input-group nzPrefixIcon="code">
+            <input formControlName="codigo" nz-input placeholder="Código de producto" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Ingresa el precio!">
+          <nz-input-group nzPrefixIcon="credit-card">
+            <input formControlName="precio" nz-input placeholder="Precio Unitario" type="number"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div nz-col nzSpan="12">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Ingresa la cantidad disponible!">
+          <nz-input-group nzPrefixIcon="number">
+            <input formControlName="cantidad" nz-input placeholder="Disponibles" type="number"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+  </div>
+
+  <nz-form-item>
+    <nz-form-control>
+      <button style="margin-left: 10px" nz-button nzType="primary" [disabled]="!validateForm.valid" (click)="addProduct()">Guardar</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

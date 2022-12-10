@@ -1,0 +1,20 @@
+[nz-button] {
+  margin-right: 8px;
+  margin-bottom: 12px;
+}
+
+.options-cs{
+  margin: 8px;
+}
+
+.delete-data:hover{
+  color: red;
+}
+
+.edit-data:hover{
+  color: blue;
+}
+
+[nz-col] {
+  padding: 10px;
+}
